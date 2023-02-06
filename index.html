@@ -60,6 +60,18 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2023 Алексей Сливко</p>
   </footer>
+
+  <div class="modal modal_type_edit-profile">
+    <div class="modal__container">
+      <button class="modal__close link" type="button" id="edit-profile-close" aria-label="Закрыть"></button>
+      <h2 class="modal__title">Редактировать профиль</h2>
+      <form class="form" name="edit-profile" id="form-profile" novalidate>
+        <input class="form__input form__input_type_name" type="text" name="username" id="userName" minlength="2" maxlength="40" placeholder="Имя" required>
+        <input class="form__input form__input_type_description" type="text" name="userjob" id="userjob" minlength="2" maxlength="200" placeholder="О себе" required>
+        <button class="form__button" type="submit" aria-label="Сохранить" value="Сохранить">Сохранить</button>
+      </form>
+    </div>
+  </div>
 </body>
 
 </html>
