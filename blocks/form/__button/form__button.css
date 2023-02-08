@@ -9,11 +9,11 @@
   color: var(--color-white);
   margin-top: 48px;
   cursor: pointer;
+  transition: opacity linear 0.5s;
 }
 
 .form__button:hover {
   opacity: 0.8;
-  transition: opacity linear 0.5s;
 }
 
 .form__button:disabled {
@@ -28,5 +28,6 @@
   .form__button {
     margin-top: 45px;
     font-size: 14px;
+    height: 46px;
   }
 }
