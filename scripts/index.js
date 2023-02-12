@@ -90,6 +90,7 @@ function renderElement(link, name) {
   element.querySelector('.element__image').alt = name;
   element.querySelector('.element__title').textContent = name;
   element.querySelector('.element__like').addEventListener('click', (evt) => evt.target.classList.toggle('element__like_active'));
+  element.querySelector('.element__delete-button').addEventListener('click', () => element.remove());
   
   elementsContainer.prepend(element);
 }
