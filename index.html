@@ -25,7 +25,7 @@
       <button class="profile__add-button link" type="button" aria-label="Добавить пост"></button>
     </section>
     <section class="elements">
-      <article class="element">
+      <!-- <article class="element">
         <img class="element__image" src="./images/element-chelovek-na-kamne.jpg" alt="Человек на камне">
         <h2 class="element__title">Человек на камне</h2>
         <button class="element__like" type="button" aria-label="Мне нравиться"></button>
@@ -54,7 +54,15 @@
         <img class="element__image" src="./images/element-vodopad-v-lesu.jpg" alt="Водопад в лесу">
         <h2 class="element__title">Водопад в лесу</h2>
         <button class="element__like" type="button" aria-label="Мне нравиться"></button>
-      </article>
+      </article> -->
+      <template id="template-element">
+        <article class="element">
+          <button class="element__delete-button link" type="button" aria-label="Удалить"></button>
+          <img class="element__image" src="#" alt="#">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like" aria-label="Мне нравиться"></button>
+        </article>
+      </template>
     </section>
   </main>
   <footer class="footer">
