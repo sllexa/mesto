@@ -42,8 +42,6 @@ const modalFormElement = document.querySelector('#form-element');
 const modalEditProfile = document.querySelector('.modal_type_edit-profile');
 const modalAddElement = document.querySelector('.modal_type_add-element');
 const formAddElement = modalAddElement.querySelector('.form');
-const inputList = formAddElement.querySelectorAll('.form__input');
-//const addElementButtonSave = modalAddElement.querySelector('.form__button');
 
 // Открытие окна редактирования профиля
 function openEditProfile() {
@@ -91,6 +89,7 @@ function renderElement(link, name) {
   element.querySelector('.element__image').src = link;
   element.querySelector('.element__image').alt = name;
   element.querySelector('.element__title').textContent = name;
+  element.querySelector('.element__like').addEventListener('click', (evt) => evt.target.classList.toggle('element__like_active'));
   
   elementsContainer.prepend(element);
 }
@@ -110,6 +109,8 @@ function handleElementFormSubmit(evt) {
   evt.preventDefault();
   renderElement(inputAddElementLink.value, inputAddElementName.value);
   closeModal(modalAddElement);
+  inputAddElementLink.value = '';
+  inputAddElementName.value = '';
 }
 
 // Cлушатель отправки формы добавления элемента
