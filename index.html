@@ -80,6 +80,17 @@
       </form>
     </div>
   </div>
+  <div class="modal modal_type_add-element">
+    <div class="modal__container">
+      <button class="modal__close link" type="button" id="add-element-close" aria-label="Закрыть"></button>
+      <h2 class="modal__title">Новое место</h2>
+      <form class="form" name="add-element" id="form-element" novalidate="">
+        <input class="form__input form__input_type_place" type="text" name="element-name" id="element-name" placeholder="Название" minlength="2" maxlength="30" required="" value="">
+        <input class="form__input form__input_type_link" type="url" name="element-link" placeholder="Ссылка на картинку" id="link" required="" value="">
+        <button class="form__button" type="submit" aria-label="Сохранить" value="Сохранить">Сохранить</button>
+      </form>
+    </div>
+  </div>
   <script src="./scripts/index.js"></script>
 </body>
 

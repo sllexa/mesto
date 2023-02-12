@@ -32,9 +32,18 @@ const jobInput = document.querySelector('.form__input_type_description');
 const profileName = document.querySelector('.profile__title');
 const profileText = document.querySelector('.profile__subtitle');
 const formProfile = document.querySelector('#form-profile');
+const openAddElementButton = document.querySelector('.profile__add-button');
+const inputAddElementName = document.querySelector('.form__input_type_place');
+const inputAddElementLink = document.querySelector('.form__input_type_link');
+const closeAddElementButton = document.querySelector('#add-element-close');
 const elementsContainer = document.querySelector('.elements');
+const modalFormElement = document.querySelector('#form-element');
 
 const modalEditProfile = document.querySelector('.modal_type_edit-profile');
+const modalAddElement = document.querySelector('.modal_type_add-element');
+const formAddElement = modalAddElement.querySelector('.form');
+const inputList = formAddElement.querySelectorAll('.form__input');
+const addElementButtonSave = modalAddElement.querySelector('.form__button');
 
 // Открытие окна редактирования профиля
 function openEditProfile() {
@@ -76,7 +85,6 @@ dataElements.forEach(function (item) {
 })
 
 function renderElement(link, name) {
-  // const elementTemplate = new Element('#template-element', name, link);
   const elementTemplate = document.querySelector('#template-element').content;
   const element = elementTemplate.querySelector('.element').cloneNode(true);
 
@@ -86,3 +94,13 @@ function renderElement(link, name) {
   
   elementsContainer.prepend(element);
 }
+
+// Слушатель кнопки открытия окна для добавления элемента
+openAddElementButton.addEventListener('click', () => {
+  openModal(modalAddElement);
+});
+
+// Слушатель кнопки закрытия окна добавления элемента
+closeAddElementButton.addEventListener('click', () => {
+  closeModal(modalAddElement);
+});
