@@ -41,7 +41,12 @@ const modalFormElement = document.querySelector('#form-element');
 
 const modalEditProfile = document.querySelector('.modal_type_edit-profile');
 const modalAddElement = document.querySelector('.modal_type_add-element');
-const formAddElement = modalAddElement.querySelector('.form');
+const modalFigure = document.querySelector('.modal_type_image');
+const elementImage = document.querySelector('.element__image');
+const modalFigureImage = modalFigure.querySelector('.figure__image');
+const modalFigureCaption = modalFigure.querySelector('.figure__caption');
+const closeImgButton = document.querySelector('#closeImg');
+
 
 // Открытие окна редактирования профиля
 function openEditProfile() {
@@ -59,11 +64,17 @@ function handleProfileFormSubmit(evt) {
 }
 
 function openModal(modal) {
-  modal.classList.add('modal_open');
+  if (modal.classList.contains('modal_status_close')) {
+    modal.classList.remove('modal_status_close');
+  }
+  modal.classList.add('modal_status_open');
 }
 
 function closeModal(modal) {
-  modal.classList.remove('modal_open');
+  modal.classList.add('modal_status_close');
+  window.setTimeout(function () {
+    modal.classList.remove('modal_status_open');
+  }, 500);
 }
 
 // Cлушатель кнопки открытия редактирования профиля
@@ -91,6 +102,12 @@ function renderElement(link, name) {
   element.querySelector('.element__title').textContent = name;
   element.querySelector('.element__like').addEventListener('click', (evt) => evt.target.classList.toggle('element__like_active'));
   element.querySelector('.element__delete-button').addEventListener('click', () => element.remove());
+  element.querySelector('.element__image').addEventListener('click', () => {
+    openModal(modalFigure);
+    modalFigureImage.src = link;
+    modalFigureImage.alt = name;
+    modalFigureCaption.textContent = name;
+  });
   
   elementsContainer.prepend(element);
 }
@@ -116,3 +133,5 @@ function handleElementFormSubmit(evt) {
 
 // Cлушатель отправки формы добавления элемента
 modalFormElement.addEventListener('submit', handleElementFormSubmit);
+// Cлушатель кнопки закрытия окна просмотра фотографии
+closeImgButton.addEventListener('click', () => closeModal(modalFigure));
