@@ -1,0 +1,12 @@
+.modal_status_close {
+  animation: fadeOutFromBlock 0.5s ease-in-out;
+}
+
+@keyframes fadeOutFromBlock {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

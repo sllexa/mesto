@@ -24,37 +24,15 @@
       </div>
       <button class="profile__add-button link" type="button" aria-label="Добавить пост"></button>
     </section>
-    <section class="elements" aria-label="Коллекция фотографий">
-      <article class="element">
-        <img class="element__image" src="./images/element-chelovek-na-kamne.jpg" alt="Человек на камне">
-        <h2 class="element__title">Человек на камне</h2>
-        <button class="element__like" type="button" aria-label="Мне нравиться"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/element-doroga-v-pustyne.jpg" alt="Дорога в пустыне">
-        <h2 class="element__title">Дорога в пустыне</h2>
-        <button class="element__like" type="button" aria-label="Мне нравиться"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/element-gornoe-ozero.jpg" alt="Горное озеро">
-        <h2 class="element__title">Горное озеро</h2>
-        <button class="element__like" type="button" aria-label="Мне нравиться"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/element-gornyi-hrebet.jpg" alt="Горный хребет">
-        <h2 class="element__title">Горный хребет</h2>
-        <button class="element__like" type="button" aria-label="Мне нравиться"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/element-osen-na-ozere.jpg" alt="Осень на озере">
-        <h2 class="element__title">Осень на озере</h2>
-        <button class="element__like" type="button" aria-label="Мне нравиться"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/element-vodopad-v-lesu.jpg" alt="Водопад в лесу">
-        <h2 class="element__title">Водопад в лесу</h2>
-        <button class="element__like" type="button" aria-label="Мне нравиться"></button>
-      </article>
+    <section class="elements">
+      <template id="template-element">
+        <article class="element">
+          <button class="element__delete-button link" type="button" aria-label="Удалить"></button>
+          <img class="element__image" src="#" alt="#">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like" aria-label="Мне нравиться"></button>
+        </article>
+      </template>
     </section>
   </main>
   <footer class="footer">
@@ -63,14 +41,35 @@
 
   <div class="modal modal_type_edit-profile">
     <div class="modal__container">
-      <button class="modal__close link" type="button" id="edit-profile-close" aria-label="Закрыть"></button>
-      <h3 class="modal__title">Редактировать профиль</h3>
+      <button class="modal__close-button link" type="button" id="edit-profile-close" aria-label="Закрыть"></button>
+      <h2 class="modal__title">Редактировать профиль</h2>
       <form class="form" name="edit-profile" id="form-profile" novalidate>
         <input class="form__input form__input_type_name" type="text" name="username" id="userName" minlength="2" maxlength="40" placeholder="Имя" required>
         <input class="form__input form__input_type_description" type="text" name="userjob" id="userjob" minlength="2" maxlength="200" placeholder="О себе" required>
         <button class="form__button" type="submit" aria-label="Сохранить" value="Сохранить">Сохранить</button>
       </form>
     </div>
+  </div>
+
+  <div class="modal modal_type_add-element">
+    <div class="modal__container">
+      <button class="modal__close-button link" type="button" id="add-element-close" aria-label="Закрыть"></button>
+      <h2 class="modal__title">Новое место</h2>
+      <form class="form" name="add-element" id="form-element" novalidate="">
+        <input class="form__input form__input_type_place" type="text" name="element-name" id="element-name" placeholder="Название" minlength="2" maxlength="30" required="" value="">
+        <input class="form__input form__input_type_link" type="url" name="element-link" placeholder="Ссылка на картинку" id="link" required="" value="">
+        <button class="form__button" type="submit" aria-label="Сохранить" value="Сохранить">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal modal_type_image">
+    <figure class="figure">
+      <button class="modal__close-button link" type="button" id="closeImg" aria-label="Закрыть"></button>
+      <img class="figure__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg"
+        alt="Камчатка">
+      <figcaption class="figure__caption">Камчатка</figcaption>
+    </figure>
   </div>
   <script src="./scripts/index.js"></script>
 </body>
