@@ -92,7 +92,7 @@ function renderElement(link, name) {
 }
 
 function createElement(link, name) {
-  element = elementTemplate.content.querySelector('.element').cloneNode(true);
+  const element = elementTemplate.content.querySelector('.element').cloneNode(true);
 
   element.querySelector('.element__image').src = link;
   element.querySelector('.element__image').alt = name;
