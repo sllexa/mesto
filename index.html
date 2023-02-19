@@ -45,7 +45,9 @@
       <h2 class="modal__title">Редактировать профиль</h2>
       <form class="form" name="edit-profile" id="form-profile" novalidate>
         <input class="form__input form__input_type_name" type="text" name="username" id="userName" minlength="2" maxlength="40" placeholder="Имя" required>
+        <span class="form__input-error" id="userName-error"></span>
         <input class="form__input form__input_type_description" type="text" name="userjob" id="userjob" minlength="2" maxlength="200" placeholder="О себе" required>
+        <span class="form__input-error" id="userjob-error"></span>
         <button class="form__button" type="submit" aria-label="Сохранить" value="Сохранить">Сохранить</button>
       </form>
     </div>
@@ -56,8 +58,10 @@
       <button class="modal__close-button link" type="button" id="add-element-close" aria-label="Закрыть"></button>
       <h2 class="modal__title">Новое место</h2>
       <form class="form" name="add-element" id="form-element" novalidate="">
-        <input class="form__input form__input_type_place" type="text" name="element-name" id="element-name" placeholder="Название" minlength="2" maxlength="30" required="" value="">
-        <input class="form__input form__input_type_link" type="url" name="element-link" placeholder="Ссылка на картинку" id="link" required="" value="">
+        <input class="form__input form__input_type_place" type="text" name="element-name" id="element-name" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="form__input-error" id="element-name-error"></span>
+        <input class="form__input form__input_type_link" type="url" name="element-link" id="link" placeholder="Ссылка на картинку" required>
+        <span class="form__input-error" id="link-error"></span>
         <button class="form__button" type="submit" aria-label="Сохранить" value="Сохранить">Сохранить</button>
       </form>
     </div>
@@ -71,6 +75,7 @@
       <figcaption class="figure__caption">Камчатка</figcaption>
     </figure>
   </div>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
