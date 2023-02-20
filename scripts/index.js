@@ -64,10 +64,14 @@ function handleProfileFormSubmit(evt) {
 
 function openModal(modal) {
   modal.classList.add('modal_open');
+  document.addEventListener('mousedown', setOverlayListener);
+  document.addEventListener('keydown', setEscListener);
 }
 
 function closeModal(modal) {
   modal.classList.remove('modal_open');
+  document.removeEventListener('mousedown', setOverlayListener);
+  document.removeEventListener('keydown', setEscListener);
 }
 
 // Cлушатель кнопки открытия редактирования профиля
@@ -124,3 +128,19 @@ function handleElementFormSubmit(evt) {
 
 // Cлушатель отправки формы добавления элемента
 modalFormElement.addEventListener('submit', handleElementFormSubmit);
+
+// закрытие модального окна по оверлею 
+const setOverlayListener = function (evt) {
+  const modalOpen = document.querySelector('.modal_open');
+  if (evt.target === modalOpen) {
+    closeModal(modalOpen);
+  }
+}
+
+// закрытие модального окна по кнопке Escape
+const setEscListener = function (evt) {
+  if (evt.key === 'Escape') {
+    const modalOpen = document.querySelector('.modal_open');
+    closeModal(modalOpen);
+  }
+}
