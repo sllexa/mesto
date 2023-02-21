@@ -6,7 +6,7 @@
   line-height: 1.22;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 28px 0 8px;
+  padding: 2px 0 8px;
   box-sizing: border-box;
 }
 
@@ -16,6 +16,6 @@
 
 @media screen and (max-width: 767px) {
   .form__input {
-    padding: 30px 0 8px;
+    padding: 0 0 8px;
   }
 }

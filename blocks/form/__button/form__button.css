@@ -7,7 +7,7 @@
   border-radius: 2px;
   background-color: var(--color-black);
   color: var(--color-white);
-  margin-top: 48px;
+  margin-top: 18px;
   cursor: pointer;
   transition: opacity linear 0.5s;
 }
@@ -26,7 +26,7 @@
 
 @media screen and (max-width: 767px) {
   .form__button {
-    margin-top: 45px;
+    margin-top: 15px;
     font-size: 14px;
     height: 46px;
   }

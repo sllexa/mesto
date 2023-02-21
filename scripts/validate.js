@@ -1,5 +1,3 @@
-import { config } from './constants.js';
-
 const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(config.inputErrorClass);
@@ -52,4 +50,5 @@ const enableValidation = (config) => {
   });
 };
 
-enableValidation(config);
+
+export { enableValidation }

@@ -1,4 +1,5 @@
-import { dataElements } from './constants.js';
+import { dataElements, config } from './constants.js';
+import { enableValidation } from './validate.js';
 
 const openEditButton = document.querySelector('.profile__edit-button');
 const nameInput = document.querySelector('.form__input_type_name');
@@ -119,3 +120,5 @@ const closeModalByEsc = function (evt) {
     closeModal(modalOpen);
   }
 }
+
+enableValidation(config);
