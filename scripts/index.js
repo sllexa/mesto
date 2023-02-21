@@ -1,29 +1,4 @@
-const dataElements = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+import { dataElements } from './constants.js';
 
 const openEditButton = document.querySelector('.profile__edit-button');
 const nameInput = document.querySelector('.form__input_type_name');
@@ -35,17 +10,15 @@ const openAddElementButton = document.querySelector('.profile__add-button');
 const inputAddElementName = document.querySelector('.form__input_type_place');
 const inputAddElementLink = document.querySelector('.form__input_type_link');
 const elementsContainer = document.querySelector('.elements');
-const modalFormElement = document.querySelector('#form-element');
+const formAddElement = document.querySelector('#form-element');
 
 const modalEditProfile = document.querySelector('.modal_type_edit-profile');
 const modalAddElement = document.querySelector('.modal_type_add-element');
 const modalFigure = document.querySelector('.modal_type_image');
 const elementTemplate = document.querySelector('#template-element')
-const elementImage = document.querySelector('.element__image');
 const modalFigureImage = modalFigure.querySelector('.figure__image');
 const modalFigureCaption = modalFigure.querySelector('.figure__caption');
 const closeButtons = document.querySelectorAll('.modal__close-button');
-
 
 // Открытие окна редактирования профиля
 function openEditProfile() {
@@ -60,18 +33,19 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileText.textContent = jobInput.value;
   closeModal(modalEditProfile);
+  formProfile.querySelector('.form__button').disabled = true;
 }
 
 function openModal(modal) {
   modal.classList.add('modal_open');
-  document.addEventListener('mousedown', setOverlayListener);
-  document.addEventListener('keydown', setEscListener);
+  modal.addEventListener('mousedown', closeModalByOverlay);
+  document.addEventListener('keydown', closeModalByEsc);
 }
 
 function closeModal(modal) {
   modal.classList.remove('modal_open');
-  document.removeEventListener('mousedown', setOverlayListener);
-  document.removeEventListener('keydown', setEscListener);
+  modal.removeEventListener('mousedown', closeModalByOverlay);
+  document.removeEventListener('keydown', closeModalByEsc);
 }
 
 // Cлушатель кнопки открытия редактирования профиля
@@ -97,11 +71,12 @@ function renderElement(link, name) {
 
 function createElement(link, name) {
   const element = elementTemplate.content.querySelector('.element').cloneNode(true);
+  const elementImage = element.querySelector('.element__image');
 
-  element.querySelector('.element__image').src = link;
-  element.querySelector('.element__image').alt = name;
+  elementImage.src = link;
+  elementImage.alt = name;
   element.querySelector('.element__title').textContent = name;
-  element.querySelector('.element__image').addEventListener('click', () => {
+  elementImage.addEventListener('click', () => {
     openModal(modalFigure);
     modalFigureImage.src = link;
     modalFigureImage.alt = name;
@@ -124,21 +99,21 @@ function handleElementFormSubmit(evt) {
   renderElement(inputAddElementLink.value, inputAddElementName.value);
   closeModal(modalAddElement);
   evt.target.reset();
+  formAddElement.querySelector('.form__button').disabled = true;
 }
 
 // Cлушатель отправки формы добавления элемента
-modalFormElement.addEventListener('submit', handleElementFormSubmit);
+formAddElement.addEventListener('submit', handleElementFormSubmit);
 
 // закрытие модального окна по оверлею 
-const setOverlayListener = function (evt) {
-  const modalOpen = document.querySelector('.modal_open');
-  if (evt.target === modalOpen) {
-    closeModal(modalOpen);
+const closeModalByOverlay = function (evt) {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
   }
 }
 
 // закрытие модального окна по кнопке Escape
-const setEscListener = function (evt) {
+const closeModalByEsc = function (evt) {
   if (evt.key === 'Escape') {
     const modalOpen = document.querySelector('.modal_open');
     closeModal(modalOpen);
