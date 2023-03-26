@@ -1,5 +1,6 @@
 import { dataElements, config } from './constants.js';
 import { enableValidation } from './validate.js';
+import Card from './Card.js';
 
 const openEditButton = document.querySelector('.profile__edit-button');
 const nameInput = document.querySelector('.form__input_type_name');
@@ -16,7 +17,6 @@ const formAddElement = document.querySelector('#form-element');
 const modalEditProfile = document.querySelector('.modal_type_edit-profile');
 const modalAddElement = document.querySelector('.modal_type_add-element');
 const modalFigure = document.querySelector('.modal_type_image');
-const elementTemplate = document.querySelector('#template-element')
 const modalFigureImage = modalFigure.querySelector('.figure__image');
 const modalFigureCaption = modalFigure.querySelector('.figure__caption');
 const closeButtons = document.querySelectorAll('.modal__close-button');
@@ -34,7 +34,6 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileText.textContent = jobInput.value;
   closeModal(modalEditProfile);
-  formProfile.querySelector('.form__button').disabled = true;
 }
 
 function openModal(modal) {
@@ -63,30 +62,19 @@ formProfile.addEventListener('submit', handleProfileFormSubmit);
 
 // Добавления елементов при загрузке страницы
 dataElements.forEach(function (item) {
-  renderElement(item.link, item.name);
-})
+  renderElement(item.name, item.link);
+});
 
-function renderElement(link, name) {
-  elementsContainer.prepend(createElement(link, name));
+function renderElement(name, link) {
+  const element = new Card(name, link, '#template-element', handleImageClick);
+  elementsContainer.prepend(element.createCard());
 }
 
-function createElement(link, name) {
-  const element = elementTemplate.content.querySelector('.element').cloneNode(true);
-  const elementImage = element.querySelector('.element__image');
-
-  elementImage.src = link;
-  elementImage.alt = name;
-  element.querySelector('.element__title').textContent = name;
-  elementImage.addEventListener('click', () => {
-    openModal(modalFigure);
-    modalFigureImage.src = link;
-    modalFigureImage.alt = name;
-    modalFigureCaption.textContent = name;
-  });
-  element.querySelector('.element__like').addEventListener('click', (evt) => evt.target.classList.toggle('element__like_active'));
-  element.querySelector('.element__delete-button').addEventListener('click', () => element.remove());
-
-  return element;
+function handleImageClick(name, link) {
+  openModal(modalFigure);
+  modalFigureImage.src = link;
+  modalFigureImage.alt = name;
+  modalFigureCaption.textContent = name;
 }
 
 // Слушатель кнопки открытия окна для добавления элемента
@@ -97,10 +85,9 @@ openAddElementButton.addEventListener('click', () => {
 // Добавления элемента через инпут
 function handleElementFormSubmit(evt) {
   evt.preventDefault();
-  renderElement(inputAddElementLink.value, inputAddElementName.value);
+  renderElement(inputAddElementName.value, inputAddElementLink.value);
   closeModal(modalAddElement);
   evt.target.reset();
-  formAddElement.querySelector('.form__button').disabled = true;
 }
 
 // Cлушатель отправки формы добавления элемента
