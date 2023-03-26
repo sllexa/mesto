@@ -1,6 +1,6 @@
 import { dataElements, config } from './constants.js';
-import { enableValidation } from './validate.js';
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const openEditButton = document.querySelector('.profile__edit-button');
 const nameInput = document.querySelector('.form__input_type_name');
@@ -21,11 +21,18 @@ const modalFigureImage = modalFigure.querySelector('.figure__image');
 const modalFigureCaption = modalFigure.querySelector('.figure__caption');
 const closeButtons = document.querySelectorAll('.modal__close-button');
 
+const enableValidation = (config, form) => {
+  const validator = new FormValidator(config, form);
+  validator.enableValidation();
+}
+
 // Открытие окна редактирования профиля
 function openEditProfile() {
   openModal(modalEditProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileText.textContent;
+
+  enableValidation(config, formProfile)
 }
 
 // Изменение данных профиля 
@@ -80,6 +87,8 @@ function handleImageClick(name, link) {
 // Слушатель кнопки открытия окна для добавления элемента
 openAddElementButton.addEventListener('click', () => {
   openModal(modalAddElement);
+  
+  enableValidation(config, formAddElement);
 });
 
 // Добавления элемента через инпут
@@ -107,5 +116,3 @@ const closeModalByEsc = function (evt) {
     closeModal(modalOpen);
   }
 }
-
-enableValidation(config);
