@@ -1,4 +1,4 @@
-.form__input {
+.modal__input {
   display: block;
   width: 100%;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -10,12 +10,12 @@
   box-sizing: border-box;
 }
 
-.form__input:focus {
+.modal__input:focus {
   outline: none;
 }
 
 @media screen and (max-width: 767px) {
-  .form__input {
+  .modal__input {
     padding: 0 0 8px;
   }
 }

@@ -2,37 +2,37 @@ import { dataElements, config } from './constants.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
-const openEditButton = document.querySelector('.profile__edit-button');
-const nameInput = document.querySelector('.form__input_type_name');
-const jobInput = document.querySelector('.form__input_type_description');
+const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
+const nameInput = document.querySelector('.modal__input_type_name');
+const jobInput = document.querySelector('.modal__input_type_description');
 const profileName = document.querySelector('.profile__title');
 const profileText = document.querySelector('.profile__subtitle');
 const formProfile = document.querySelector('#form-profile');
-const openAddElementButton = document.querySelector('.profile__add-button');
-const inputAddElementName = document.querySelector('.form__input_type_place');
-const inputAddElementLink = document.querySelector('.form__input_type_link');
-const elementsContainer = document.querySelector('.elements');
+const buttonOpenPopupAddElement = document.querySelector('.profile__add-button');
+const inputAddElementName = document.querySelector('.modal__input_type_place');
+const inputAddElementLink = document.querySelector('.modal__input_type_link');
+const containerEelments = document.querySelector('.elements');
 const formAddElement = document.querySelector('#form-element');
 
 const modalEditProfile = document.querySelector('.modal_type_edit-profile');
 const modalAddElement = document.querySelector('.modal_type_add-element');
 const modalFigure = document.querySelector('.modal_type_image');
-const modalFigureImage = modalFigure.querySelector('.figure__image');
-const modalFigureCaption = modalFigure.querySelector('.figure__caption');
-const closeButtons = document.querySelectorAll('.modal__close-button');
+const modalFigureImage = modalFigure.querySelector('.modal__image');
+const modalFigureCaption = modalFigure.querySelector('.modal__caption');
+const buttonsClosePopup = document.querySelectorAll('.modal__close-button');
 
-const enableValidation = (config, form) => {
-  const validator = new FormValidator(config, form);
-  validator.enableValidation();
-}
+const formProfileValidator = new FormValidator(config, formProfile);
+formProfileValidator.enableValidation();
+
+const formAddValidator = new FormValidator(config, formAddElement);
+formAddValidator.enableValidation();
 
 // Открытие окна редактирования профиля
 function openEditProfile() {
   openModal(modalEditProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileText.textContent;
-
-  enableValidation(config, formProfile)
+  formProfileValidator.resetValidation();
 }
 
 // Изменение данных профиля 
@@ -56,10 +56,10 @@ function closeModal(modal) {
 }
 
 // Cлушатель кнопки открытия редактирования профиля
-openEditButton.addEventListener('click', openEditProfile);
+buttonOpenPopupProfile.addEventListener('click', openEditProfile);
 
 // Закрытие всех модальных окон по крестику
-closeButtons.forEach((button) => {
+buttonsClosePopup.forEach((button) => {
   const modal = button.closest('.modal');
   button.addEventListener('click', () => closeModal(modal));
 });
@@ -74,7 +74,7 @@ dataElements.forEach(function (item) {
 
 function renderElement(name, link) {
   const element = new Card(name, link, '#template-element', handleImageClick);
-  elementsContainer.prepend(element.createCard());
+  containerEelments.prepend(element.createCard());
 }
 
 function handleImageClick(name, link) {
@@ -85,10 +85,9 @@ function handleImageClick(name, link) {
 }
 
 // Слушатель кнопки открытия окна для добавления элемента
-openAddElementButton.addEventListener('click', () => {
+buttonOpenPopupAddElement.addEventListener('click', () => {
   openModal(modalAddElement);
-  
-  enableValidation(config, formAddElement);
+  formAddValidator.resetValidation();
 });
 
 // Добавления элемента через инпут

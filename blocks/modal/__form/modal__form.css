@@ -1,9 +1,9 @@
-.form {
+.modal__form {
   margin-top: 46px;
 }
 
 @media screen and (max-width: 767px) {
-  .form {
+  .modal__form {
     margin-top: 76px;
   }
 }

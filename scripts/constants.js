@@ -26,11 +26,11 @@ const dataElements = [
 ];
 
 const config = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__button',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
+  formSelector: '.modal__form',
+  inputSelector: '.modal__input',
+  submitButtonSelector: '.modal__button-save',
+  inputErrorClass: 'modal__input_type_error',
+  errorClass: 'modal__input-error_active'
 };
 
 

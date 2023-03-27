@@ -43,12 +43,12 @@
     <div class="modal__container">
       <button class="modal__close-button link" type="button" id="edit-profile-close" aria-label="Закрыть"></button>
       <h2 class="modal__title">Редактировать профиль</h2>
-      <form class="form" name="edit-profile" id="form-profile" novalidate>
-        <input class="form__input form__input_type_name" type="text" name="username" id="userName" minlength="2" maxlength="40" placeholder="Имя" required>
-        <span class="form__input-error" id="userName-error"></span>
-        <input class="form__input form__input_type_description" type="text" name="userjob" id="userjob" minlength="2" maxlength="200" placeholder="О себе" required>
-        <span class="form__input-error" id="userjob-error"></span>
-        <button class="form__button" type="submit" aria-label="Сохранить" value="Сохранить">Сохранить</button>
+      <form class="modal__form" name="edit-profile" id="form-profile" novalidate>
+        <input class="modal__input modal__input_type_name" type="text" name="name" id="userName" minlength="2" maxlength="40" placeholder="Имя" required>
+        <span class="modal__input-error" id="userName-error"></span>
+        <input class="modal__input modal__input_type_description" type="text" name="about" id="userjob" minlength="2" maxlength="200" placeholder="О себе" required>
+        <span class="modal__input-error" id="userjob-error"></span>
+        <button class="modal__button-save" type="submit" aria-label="Сохранить" value="Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
@@ -57,22 +57,21 @@
     <div class="modal__container">
       <button class="modal__close-button link" type="button" id="add-element-close" aria-label="Закрыть"></button>
       <h2 class="modal__title">Новое место</h2>
-      <form class="form" name="add-element" id="form-element" novalidate="">
-        <input class="form__input form__input_type_place" type="text" name="element-name" id="element-name" placeholder="Название" minlength="2" maxlength="30" required>
-        <span class="form__input-error" id="element-name-error"></span>
-        <input class="form__input form__input_type_link" type="url" name="element-link" id="link" placeholder="Ссылка на картинку" required>
-        <span class="form__input-error" id="link-error"></span>
-        <button class="form__button" type="submit" aria-label="Сохранить" value="Сохранить">Сохранить</button>
+      <form class="modal__form" name="add-element" id="form-element" novalidate="">
+        <input class="modal__input modal__input_type_place" type="text" name="name" id="element-name" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="modal__input-error" id="element-name-error"></span>
+        <input class="modal__input modal__input_type_link" type="url" name="link" id="link" placeholder="Ссылка на картинку" required>
+        <span class="modal__input-error" id="link-error"></span>
+        <button class="modal__button-save" type="submit" aria-label="Сохранить" value="Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
 
   <div class="modal modal_type_image">
-    <figure class="figure">
+    <figure class="modal__figure">
       <button class="modal__close-button link" type="button" id="closeImg" aria-label="Закрыть"></button>
-      <img class="figure__image" src="#"
-        alt="#">
-      <figcaption class="figure__caption">#</figcaption>
+      <img class="modal__image" src="#" alt="#">
+      <figcaption class="modal__caption">#</figcaption>
     </figure>
   </div>
   <script type="module" src="./scripts/index.js"></script>
