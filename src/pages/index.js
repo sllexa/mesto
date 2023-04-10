@@ -21,6 +21,7 @@ import {
   selectorPopupImage,
   config 
 } from '../utils/constants.js';
+import './index.css';
 
 const formProfileValidator = new FormValidator(config, formProfile);
 formProfileValidator.enableValidation();
