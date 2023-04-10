@@ -26,6 +26,7 @@
 * CSS 3 (Flex, Grid Layout)
 * JavaScript
 * Адаптивная вёрстка
+* Webpack
 
 **Планы**
 
