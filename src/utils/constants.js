@@ -31,8 +31,6 @@ export const formProfile = document.querySelector('#form-profile');
 export const formAddElement = document.querySelector('#form-element');
 export const selectorProfileName = '.profile__title';
 export const selectorProfileAbout = '.profile__subtitle';
-export const inputProfileName = document.querySelector('.modal__input_type_name');
-export const inputProfileAbout = document.querySelector('.modal__input_type_description');
 
 export const templateCard = '#template-element';
 export const selectorCardsContainer = '.elements';

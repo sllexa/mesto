@@ -10,8 +10,6 @@ import {
   selectorCardsContainer,
   selectorProfileName,
   selectorProfileAbout,
-  inputProfileName,
-  inputProfileAbout,
   buttonOpenPopupProfile,
   buttonOpenPopupAddElement,
   formProfile,
@@ -42,10 +40,8 @@ popupProfile.setEventListeners();
 
 // Cлушатель кнопки открытия редактирования профиля
 buttonOpenPopupProfile.addEventListener('click', () => {
-  const { name, about } = userInfo.getUserInfo();
-  inputProfileName.value = name;
-  inputProfileAbout.value = about;
   formProfileValidator.resetValidation();
+  popupProfile.setInputValues(userInfo.getUserInfo());
   popupProfile.open();
 });
 
