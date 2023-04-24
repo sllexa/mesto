@@ -15,7 +15,9 @@
   </header>
   <main class="main">
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/zhak-iv-kusto.jpg') %>" alt="Аватар пользователя">
+      <button class="profile__avatar-edit" type="button" title="Изменить аватар">
+        <img class="profile__avatar" src="<%=require('./images/zhak-iv-kusto.jpg') %>" alt="Аватар пользователя">
+      </button>
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <button class="profile__edit-button link" type="button" aria-label="Редактировать профиль"></button>
@@ -29,7 +31,10 @@
           <button class="element__delete-button link" type="button" aria-label="Удалить"></button>
           <img class="element__image" src="#" alt="#">
           <h2 class="element__title"></h2>
-          <button type="button" class="element__like" aria-label="Мне нравиться"></button>
+          <div class="element__like-container">
+            <button type="button" class="element__like" aria-label="Мне нравиться"></button>
+            <p class="element__like-count">0</p>
+          </div>
         </article>
       </template>
     </section>
@@ -56,7 +61,7 @@
     <div class="modal__container">
       <button class="modal__close-button link" type="button" id="add-element-close" aria-label="Закрыть"></button>
       <h2 class="modal__title">Новое место</h2>
-      <form class="modal__form" name="add-element" id="form-element" novalidate="">
+      <form class="modal__form" name="add-element" id="form-element" novalidate>
         <input class="modal__input modal__input_type_place" type="text" name="name" id="element-name" placeholder="Название" minlength="2" maxlength="30" required>
         <span class="modal__input-error" id="element-name-error"></span>
         <input class="modal__input modal__input_type_link" type="url" name="link" id="link" placeholder="Ссылка на картинку" required>
@@ -72,6 +77,28 @@
       <img class="modal__image" src="#" alt="#">
       <figcaption class="modal__caption">#</figcaption>
     </figure>
+  </div>
+
+  <div class="modal modal_type_avatar">
+    <div class="modal__container">
+      <button class="modal__close-button link" type="button" aria-label="Закрыть"></button>
+      <h2 class="modal__title">Обновить аватар</h2>
+      <form class="modal__form" name="edit-avatar" id="form-avatar" novalidate>
+        <input class="modal__input modal__input_type_avatar" type="url" name="avatar" id="avatar" placeholder="Ссылка на аватар" required>
+        <span class="modal__input-error" id="avatar-error"></span>
+        <button class="modal__button-save" type="submit" title="Сохранить">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal modal_type_confirm">
+    <div class="modal__container">
+      <button class="modal__close-button link" type="button" aria-label="Закрыть"></button>
+      <h2 class="modal__title">Вы уверены?</h2>
+      <form class="modal__form" name="form-confirm" id="form-confirm" novalidate>
+        <button class="modal__button-save" type="submit" title="Подтвердить">Да</button>
+      </form>
+    </div>
   </div>
 </body>
 

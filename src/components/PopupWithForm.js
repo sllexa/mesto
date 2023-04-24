@@ -6,6 +6,7 @@ export default class PopupWithForm extends Popup {
     this._handlerSubmit = handlerSubmit;
     this._form = this._popup.querySelector('.modal__form');
     this._listInput = this._form.querySelectorAll('.modal__input');
+    this._buttonSubmit = this._form.querySelector('.modal__button-save');
   }
 
   _getInputValues() {
@@ -36,5 +37,9 @@ export default class PopupWithForm extends Popup {
     this._listInput.forEach((input) => {
       input.value = data[input.name];
     });
+  }
+
+  setCaptionButton(isLoading) {
+    this._buttonSubmit.textContent = isLoading ? 'Сохранение...' : 'Сохранить';
   }
 }
