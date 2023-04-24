@@ -71,7 +71,7 @@ buttonOpenPopupProfile.addEventListener('click', () => {
 // Добавления елементов при загрузке страницы
 const section = new Section({
   renderer: (item) => {
-    section.addItem(getCardElement(item));
+    section.addItems(getCardElement(item));
   }
 }, selectorCardsContainer);
 
@@ -84,7 +84,7 @@ api.renderUserAndCards()
     userInfo.setUserInfo(user);
     userInfo.setUserAvatar(user);
     userInfo.setUserId(user._id);
-    section.renderItems(listCards.reverse());
+    section.renderItems(listCards);
   })
   .catch(error => console.log(error));
 
@@ -103,7 +103,7 @@ function getCardElement(data) {
   data.userId = userInfo.getUserId();
   const card = new Card({data, selector: templateCard, 
     handleCardClick: (name, link) => popupImage.open(name, link), 
-    handleCardDelete: () => PopupConfirm.open(card),
+    handleCardDelete: () => popupConfirm.open(card),
     handleLikeClick
   });
   return card.createCard();
@@ -116,7 +116,7 @@ const popupAddElement = new PopupWithForm(selectorPopupAddElement, (data) => {
   popupAddElement.setCaptionButton(true);
   api.addCard(data)
     .then(card => {
-      section.addItem(getCardElement(card));
+      section.addElement(getCardElement(card));
       popupAddElement.close();
     })
     .catch(error => console.log(error))
@@ -147,12 +147,12 @@ profileAvatar.addEventListener('click', () => {
   popupAvatar.open();
 });
 
-const PopupConfirm = new PopupWithConfirm(selectorPopupConfirm, (card) => {
+const popupConfirm = new PopupWithConfirm(selectorPopupConfirm, (card) => {
   api.deleteCard(card.getCardId())
     .then(() => {
       card.deleteCard();
-      PopupConfirm.close();
+      popupConfirm.close();
     })
     .catch((error) => console.log(error));
 });
-PopupConfirm.setEventListeners();
+popupConfirm.setEventListeners();
